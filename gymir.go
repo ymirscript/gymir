@@ -61,16 +61,21 @@ type RouteNode struct {
 	Header       *MiddlewareOptions      `json:"header"`
 	Body         *MiddlewareOptions      `json:"body"`
 	Authenticate *AuthenticateClauseNode `json:"authenticate"`
+	Description  *string                 `json:"description"`
 }
+
+type MiddlewareOptions map[string]interface{}
 
 type AuthBlockNode struct {
 	SyntaxNode
-	Alias                 *string
-	Type                  AuthType
-	Source                string
-	Field                 string
-	IsDefaultAccessPublic *bool
-	IsAuthorizationInUse  bool
+	Alias                 *string 			`json:"alias"`
+	Type                  AuthType 			`json:"type"`
+	Source                string  			`json:"source"`
+	Field                 string 			`json:"field"`
+	IsDefaultAccessPublic *bool  			`json:"isDefaultAccessPublic"`
+	IsAuthorizationInUse  bool 				`json:"isAuthorizationInUse"`
+	options 			  MiddlewareOptions `json:"options"`
+
 }
 
 type AuthenticateClauseNode struct {
@@ -84,8 +89,6 @@ type MiddlewareNode struct {
 	Name    string            `json:"name"`
 	Options MiddlewareOptions `json:"options"`
 }
-
-type MiddlewareOptions map[string]interface{}
 
 type GlobalVariable struct {
 	Name string   `json:"name"`
